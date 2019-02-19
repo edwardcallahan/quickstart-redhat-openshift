@@ -1455,6 +1455,12 @@ Resources:
         Fn::Sub:
           - |
             #!/bin/bash -x
+            kernel_version=`uname -a | awk '{print $3}'`
+            if [ $kernel_version == 3.10.0-862.el7.x86_64 ]
+            then yum update -y
+            rm -f /var/lib/cloud/instances/*/sem/config_scripts_user
+            init 6
+            fi
             QSLOCATION=https://${QSS3BucketName}.${S3Region}.amazonaws.com/${QSS3KeyPrefix}
             yum install -y git
             git clone https://github.com/aws-quickstart/quickstart-linux-utilities.git
@@ -1534,6 +1540,12 @@ Resources:
         Fn::Sub:
           - |
             #!/bin/bash -x
+            kernel_version=`uname -a | awk '{print $3}'`
+            if [ $kernel_version == 3.10.0-862.el7.x86_64 ]
+            then yum update -y
+            rm -f /var/lib/cloud/instances/*/sem/config_scripts_user
+            init 6
+            fi
             export QSLOCATION=https://${QSS3BucketName}.${S3Region}.amazonaws.com/${QSS3KeyPrefix}
             yum install -y git
             git clone https://github.com/aws-quickstart/quickstart-linux-utilities.git
@@ -1617,6 +1629,12 @@ Resources:
         Fn::Sub:
           - |
             #!/bin/bash -x
+            kernel_version=`uname -a | awk '{print $3}'`
+            if [ $kernel_version == 3.10.0-862.el7.x86_64 ]
+            then yum update -y
+            rm -f /var/lib/cloud/instances/*/sem/config_scripts_user
+            init 6
+            fi
             export QSLOCATION=https://${QSS3BucketName}.${S3Region}.amazonaws.com/${QSS3KeyPrefix}
             yum install -y git
             git clone https://github.com/aws-quickstart/quickstart-linux-utilities.git
@@ -1700,6 +1718,12 @@ Resources:
         Fn::Sub:
           - |
             #!/bin/bash -x
+            kernel_version=`uname -a | awk '{print $3}'`
+            if [ $kernel_version == 3.10.0-862.el7.x86_64 ]
+            then yum update -y
+            rm -f /var/lib/cloud/instances/*/sem/config_scripts_user
+            init 6
+            fi
             export QSLOCATION=https://${QSS3BucketName}.${S3Region}.amazonaws.com/${QSS3KeyPrefix}
             yum install -y git
             git clone https://github.com/aws-quickstart/quickstart-linux-utilities.git
@@ -2089,6 +2113,12 @@ Resources:
         Fn::Sub:
           - |
             #!/bin/bash -x
+            kernel_version=`uname -a | awk '{print $3}'`
+            if [ $kernel_version == 3.10.0-862.el7.x86_64 ]
+            then yum update -y
+            rm -f /var/lib/cloud/instances/*/sem/config_scripts_user
+            init 6
+            fi
             export QSLOCATION=https://${QSS3BucketName}.${S3Region}.amazonaws.com/${QSS3KeyPrefix}
             export ENABLE_HAWKULAR=${HawkEnable}
             export GET_ANSIBLE_FROM_GIT=${AnsibleFromGit}

@@ -9,7 +9,8 @@ import os
 import operator
 import yaml
 from aws_openshift_quickstart.logger import LogUtil
-
+from aws_openshift_quickstart.logger import LogUtil
+from requests.auth import HTTPBasicAuth
 
 class InventoryConfig(object):
     """
@@ -339,10 +340,11 @@ class InventoryScaling(object):
             tags = cls.get_UUID(node_key)
             for tag in tags:
                 cls.log.debug("[{}] / Value [{}] - Tag".format(tag['key'], tag['value']))
-                unsubscribe_url = 'http://subscription.rhn.redhat.com/subscription/consumers/' + tag['value']
-        cls.log.debug(unsubscribe_url)
-        response = requests.delete(unsubscribe_url, verify='/etc/rhsm/ca/redhat-uep.pem')
-        cls.log.debug("[{}]".format(response.text))
+                unsubscribe_url = 'https://subscription.rhn.redhat.com/subscription/consumers/' + tag['value']
+                cls.log.debug(unsubscribe_url)
+                response = requests.delete(unsubscribe_url, auth=HTTPBasicAuth('cunei', 'somepassword'), verify='/etc/rhsm/ca/redhat-uep.pem')
+                cls.log.debug("[{}]".format(response.status_code))
+                cls.log.debug("[{}]".format(response.text))
 
     @classmethod
     def add_nodes_to_section(cls, nodes, category, fluff=True, migrate=False):
